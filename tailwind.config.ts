@@ -5,11 +5,11 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        ink: "#050b1b",
-        cloud: "#f3f5f8",
-        electric: "#8ea7ff",
-        cyan: "#91d2f7",
-        "cyan-soft": "#b8e3ff",
+        ink: "#090d18",
+        cloud: "#f7f8fc",
+        electric: "#21c7d9",
+        cyan: "#21c7d9",
+        "cyan-soft": "#8fe7ef",
       },
       fontFamily: {
         sans: ["var(--font-geist-sans)", "Arial", "sans-serif"],
