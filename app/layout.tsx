@@ -2,22 +2,22 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Nuvra Academy — AI-assisted school management",
+  title: "Nuvra Academy — Coming soon",
   description:
-    "Nuvra Academy is building NUVRA, an AI-assisted school management platform for educational institutions.",
+    "Nuvra Academy is preparing NUVRA, an AI-assisted school management platform for educational institutions.",
   openGraph: {
-    title: "Nuvra Academy — AI-assisted school management",
+    title: "Nuvra Academy — Coming soon",
     description:
-      "NUVRA brings the workflows of modern educational institutions into one secure, human-centered platform.",
+      "Nuvra Academy is preparing a modern, AI-assisted school management platform for real educational workflows.",
     siteName: "Nuvra Academy",
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nuvra Academy — AI-assisted school management",
+    title: "Nuvra Academy — Coming soon",
     description:
-      "NUVRA is an AI-assisted school management platform for educational institutions.",
+      "Nuvra Academy is preparing NUVRA for real educational workflows.",
   },
 };
 
