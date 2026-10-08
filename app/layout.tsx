@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     description:
       "Nuvra Academy is building NUVRA for real educational workflows.",
   },
-  icons: { icon: "/brand/nuvra-academy-logo.png" },
+  icons: { icon: [{ url: "/brand/nuvra-mark.png", type: "image/png", sizes: "104x109" }] },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
