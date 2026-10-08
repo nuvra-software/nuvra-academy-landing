@@ -1,16 +1,28 @@
 "use client";
 
-import { AnimatePresence, motion as motionLib } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Logo } from "@/components/brand/Logo";
-import type { Copy, Language } from "@/lib/content";
+import type { Language, SiteCopy } from "@/lib/site-content";
 
-const MotionDiv = motionLib.div as React.ElementType;
-
-export function Navbar({ text, language, onLanguageChange }: { text: Copy; language: Language; onLanguageChange: (language: Language) => void }) {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const links = [["#top", text.nav.home], ["#story", text.nav.story], ["#product", text.nav.product], ["#ai", text.nav.ai], ["#vision", text.nav.vision], ["#team", text.nav.team], ["#contact", text.nav.contact]];
-
-  return <header className="sticky top-0 z-50 border-b border-white/[.07] bg-ink/85 backdrop-blur-xl"><nav className="mx-auto flex h-[76px] w-full max-w-7xl items-center justify-between px-6 lg:px-10"><a href="#top" className="focus-ring inline-flex items-center" aria-label="Nuvra Academy home"><Logo variant="full" className="h-9" priority /></a><div className="hidden items-center gap-6 text-[11px] text-white/50 xl:flex">{links.map(([href, label]) => <a key={href} href={href} className="focus-ring transition-colors hover:text-white">{label}</a>)}</div><div className="flex items-center gap-2"><div className="flex rounded-full border border-white/10 bg-white/[.04] p-1 text-[10px] font-bold tracking-[.12em]">{(["en", "es"] as Language[]).map((option) => <button key={option} onClick={() => onLanguageChange(option)} className={`focus-ring rounded-full px-2.5 py-1.5 uppercase transition-colors ${language === option ? "bg-white text-black" : "text-white/40 hover:text-white"}`} aria-pressed={language === option}>{option}</button>)}</div><a href="#contact" className="button-primary hidden rounded-full px-4 py-2 text-[11px] font-semibold sm:inline-flex">{text.nav.cta}</a><button onClick={() => setMenuOpen((open) => !open)} className="focus-ring rounded-full border border-white/10 p-2 text-white/70 xl:hidden" aria-label={menuOpen ? "Close menu" : "Open menu"}>{menuOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}</button></div></nav><AnimatePresence>{menuOpen && <MotionDiv initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="overflow-hidden border-t border-white/[.07] xl:hidden"><div className="mx-auto flex max-w-7xl flex-col px-6 py-3">{links.map(([href, label]) => <a key={href} href={href} onClick={() => setMenuOpen(false)} className="border-b border-white/[.06] py-3 text-sm text-white/65">{label}</a>)}<a href="#contact" onClick={() => setMenuOpen(false)} className="mt-3 rounded-full bg-white px-4 py-2.5 text-center text-sm font-semibold text-black">{text.nav.cta}</a></div></MotionDiv>}</AnimatePresence></header>;
+export function Navbar({ text, language, onLanguageChange }: { text: SiteCopy; language: Language; onLanguageChange: (language: Language) => void }) {
+  const [open, setOpen] = useState(false);
+  const links = [["#product", text.nav.product], ["#school", text.nav.school], ["#approach", text.nav.approach], ["#team", text.nav.team]];
+  useEffect(() => {
+    const closeOnEscape = (event: KeyboardEvent) => { if (event.key === "Escape") setOpen(false); };
+    document.addEventListener("keydown", closeOnEscape);
+    return () => document.removeEventListener("keydown", closeOnEscape);
+  }, []);
+  return <header className="site-header">
+    <nav className="navigation page-width" aria-label={language === "en" ? "Main navigation" : "Navegación principal"}>
+      <a href="#top" className="brand-link" aria-label="Nuvra Academy"><Logo className="nav-logo" tone="light" priority /></a>
+      <div className="desktop-links">{links.map(([href, label]) => <a href={href} key={href}>{label}</a>)}</div>
+      <div className="nav-actions">
+        <div className="language-switch" aria-label={language === "en" ? "Language" : "Idioma"}>{(["en", "es"] as const).map(option => <button key={option} type="button" lang={option} aria-label={option === "en" ? "English" : "Español"} aria-pressed={language === option} onClick={() => onLanguageChange(option)}>{option.toUpperCase()}</button>)}</div>
+        <a className="nav-contact" href="#contact">{text.nav.contact}</a>
+        <button type="button" className="menu-toggle" aria-controls="mobile-navigation" aria-expanded={open} aria-label={open ? text.nav.close : text.nav.open} onClick={() => setOpen(value => !value)}>{open ? <X size={22} /> : <Menu size={22} />}</button>
+      </div>
+    </nav>
+    {open && <div className="mobile-navigation" id="mobile-navigation">{links.map(([href, label]) => <a href={href} key={href} onClick={() => setOpen(false)}>{label}</a>)}<a href="#contact" onClick={() => setOpen(false)}>{text.nav.contact}</a></div>}
+  </header>;
 }

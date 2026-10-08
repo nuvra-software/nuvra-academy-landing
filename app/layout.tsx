@@ -3,13 +3,13 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://nuvraacademy.com.ar"),
-  title: "Nuvra Academy — AI-assisted school operations",
+  title: "Nuvra Academy — Software for schools, built from inside a school",
   description:
-    "Nuvra Academy is building NUVRA, an AI-assisted operating layer for educational institutions.",
+    "Nuvra is a student-founded company building adaptable software for schools, starting from a real school environment in Buenos Aires.",
   openGraph: {
-    title: "Nuvra Academy — AI-assisted school operations",
+    title: "Nuvra Academy — Software for schools, built from inside a school",
     description:
-      "Nuvra Academy is building NUVRA, an AI-assisted operating layer for educational institutions.",
+      "Nuvra is building adaptable software for schools, starting from a real school environment in Buenos Aires.",
     siteName: "Nuvra Academy",
     locale: "en_US",
     type: "website",
@@ -17,9 +17,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Nuvra Academy — AI-assisted school operations",
+    title: "Nuvra Academy — Software for schools",
     description:
-      "Nuvra Academy is building NUVRA for real educational workflows.",
+      "A student-founded company building adaptable software for real school workflows.",
   },
   icons: { icon: [{ url: "/brand/nuvra-mark.png", type: "image/png", sizes: "104x109" }] },
 };
